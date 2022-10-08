@@ -12,12 +12,14 @@ class Repository:
         self.DB_TODO[id] = item
         return id
 
-    def delete_item(self, id: uuid.UUID):
+    def remove_item(self, id: uuid.UUID):
         self.DB_TODO.pop(id)
 
-    def find_all_item(self):
+    def remove_all(self):
+        self.DB_TODO.clear()
 
-        return self.DB_TODO.values()
+    def find_all_item(self):
+        return self.DB_TODO.items()
 
     def find_item(self, id: uuid.UUID):
         return self.DB_TODO[id]
