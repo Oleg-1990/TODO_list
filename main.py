@@ -1,10 +1,14 @@
 from API import api
-
+from Repository import repository
 
 if __name__ == '__main__':
+
+
+
     api = api.Api()
     exit = False
     print('Hello! \nIt`s a TODO list')
+    api.read_file()
     while not exit:
         print('Please enter the task or use help(command "help")')
         user_command = input().strip()
@@ -19,9 +23,12 @@ if __name__ == '__main__':
                 api.completed()
             case 'canceled':
                 api.canceled()
+            case 'find':
+                api.find()
             case 'remove':
                 api.remove()
             case 'remove_all':
                 api.remove_all()
             case 'exit':
-                exit = api.exit()
+                api.exit()
+                exit = True

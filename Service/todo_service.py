@@ -27,12 +27,19 @@ class todo_service_item:
     def show_item(self, item: todo_item.TODO_item):
         return f'{item.description}, {self.func.beautifull_date(item.due_date)}, {item.status}'
 
+    def find(self):
+        self.repo.find()
+
     def completed(self, id):
         self.repo.completed(id)
+
+    def exit(self):
+        self.repo.save_to_json()
 
     def canceled(self, id):
         self.repo.canceled(id)
 
-
+    def read_file(self):
+        self.repo.read_from_json()
 
 

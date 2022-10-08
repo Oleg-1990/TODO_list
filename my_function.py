@@ -1,6 +1,5 @@
-import Constants.constants as cons
 from datetime import datetime
-from colorama import Fore
+
 
 def validate_date():
     flag = False
@@ -11,27 +10,22 @@ def validate_date():
             date = input().strip()
             mod_date = datetime.strptime(date, '%d.%m.%Y')
         except:
-            print('You entered an invalid date, please try again in in format dd.mm.yyyy.')
+            print('You entered an invalid date, please try again in format dd.mm.yyyy.')
         else:
             flag = True
     return mod_date
+
 
 def beautifull_date(date: datetime):
     return date.strftime('%d-%m-%Y')
 
 
-
-# def priority(priority: str):
-#     match priority:
-#         case 'y':
-#             return Fore.RED+cons.status.pending
-#         case 'yes':
-#             return Fore.RED + cons.status.pending
-#         case 'n':
-#             return cons.status.pending
-#         case 'no':
-#             return cons.status.pending
-#         case 'not':
-#             return cons.status.pending
-
-
+def valid_index(len_list: int):
+    flag = False
+    while not flag:
+        index = input().strip()
+        if index.isnumeric() and 1 <= int(index) <= len_list:
+            flag = True
+            return int(index)
+        else:
+            print('You entered an invalid index, please try again')

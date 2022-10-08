@@ -5,13 +5,12 @@ import my_function
 class Api:
     def __init__(self):
         self.service = todo_service.todo_service_item()
-        self.tasks = self.service.list_item() # return list[tuple(key,value)]
-        self.func = my_function
+        self.tasks = self.service.list_item()  # return list[tuple(key,value)]
 
     def add(self):
         print('Please enter task')
-        task = input().strip()
-        due_date = self.func.validate_date()
+        task = input().strip().lower()
+        due_date = my_function.validate_date()
         self.service.add_item(task, due_date)
 
     def list(self):
@@ -25,7 +24,7 @@ class Api:
     def help(self):
         print('Commands:', end=' ')
         for fanc in dir(self):
-            if not fanc.startswith('__'):
+            if not fanc.startswith('__') and fanc != 'service' and fanc != 'tasks':
                 print("'" + fanc + "'", end=' ')
         print()
 
@@ -36,8 +35,8 @@ class Api:
             for task in enumerate(self.tasks, 1):
                 print(task[0], self.service.show_item(task[1][1]))
             print('Please enter index task, what do you want to remove')
-            index = int(input().strip())-1
-            id = list(self.tasks)[index][0]
+            index = my_function.valid_index(len(self.tasks))
+            id = list(self.tasks)[index - 1][0]
             self.service.remove_item(id)
 
     def completed(self):
@@ -47,9 +46,10 @@ class Api:
             for task in enumerate(self.tasks, 1):
                 print(task[0], self.service.show_item(task[1][1]))
             print('Please enter index task to completed')
-            index = int(input().strip())-1
-            id = list(self.tasks)[index][0]
+            index = my_function.valid_index(len(self.tasks))
+            id = list(self.tasks)[index - 1][0]
             self.service.completed(id)
+
     def canceled(self):
         if len(self.tasks) == 0:
             print('You don`t add any tasks')
@@ -57,12 +57,18 @@ class Api:
             for task in enumerate(self.tasks, 1):
                 print(task[0], self.service.show_item(task[1][1]))
             print('Please enter index task to completed')
-            index = int(input().strip())-1
-            id = list(self.tasks)[index][0]
+            index = my_function.valid_index(len(self.tasks))
+            id = list(self.tasks)[index - 1][0]
             self.service.canceled(id)
+
+    def find(self):
+        self.service.find()
 
     def remove_all(self):
         self.service.remove_all()
 
     def exit(self):
-        return True
+        self.service.exit()
+
+    def read_file(self):
+        self.service.read_file()
