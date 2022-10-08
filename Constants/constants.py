@@ -1,5 +1,5 @@
 from collections import namedtuple
 
-Status = namedtuple('Status', ['pending', 'complete', 'canceled'])
-status = Status('Pending', 'Complete', 'Canceled')
+Status = namedtuple('Status', ['pending', 'completed', 'canceled'])
+status = Status('Pending', 'Completed', 'Canceled')
 

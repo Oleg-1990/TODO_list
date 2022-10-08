@@ -1,11 +1,12 @@
 import uuid
-
-from TODO_item import todo_item
+from Constants import constants
+from termcolor import colored
 
 
 class Repository:
     def __init__(self):
         self.DB_TODO = dict()
+        self.cons = constants
 
     def create_item(self, item) -> uuid.UUID:
         id = uuid.uuid4()
@@ -24,4 +25,9 @@ class Repository:
     def find_item(self, id: uuid.UUID):
         return self.DB_TODO[id]
 
+    def completed(self, id):
+        d = self.DB_TODO[id].status = colored(self.cons.status.completed, 'green')
+
+    def canceled(self, id):
+        d = self.DB_TODO[id].status = colored(self.cons.status.canceled, 'red')
 

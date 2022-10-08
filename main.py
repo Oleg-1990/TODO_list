@@ -15,6 +15,10 @@ if __name__ == '__main__':
                 api.add()
             case 'list':
                 api.list()
+            case 'completed':
+                api.completed()
+            case 'canceled':
+                api.canceled()
             case 'remove':
                 api.remove()
             case 'remove_all':
