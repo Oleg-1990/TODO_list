@@ -4,7 +4,7 @@ import my_function
 
 class Api:
     def __init__(self):
-        self.service = todo_service.todo_service_item()
+        self.service = todo_service.TodoServiceItem()
         self.tasks = self.service.list_item()  # return list[tuple(key,value)]
 
     def add(self):
@@ -24,7 +24,7 @@ class Api:
     def help(self):
         print('Commands:', end=' ')
         for fanc in dir(self):
-            if not fanc.startswith('__') and fanc != 'service' and fanc != 'tasks':
+            if not fanc.startswith('__') and fanc != 'service' and fanc != 'tasks' and fanc != 'read_file':
                 print("'" + fanc + "'", end=' ')
         print()
 
@@ -72,3 +72,6 @@ class Api:
 
     def read_file(self):
         self.service.read_file()
+
+    def done_list(self):
+        self.service.done_list()

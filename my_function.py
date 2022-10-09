@@ -16,8 +16,17 @@ def validate_date():
     return mod_date
 
 
-def beautifull_date(date: datetime):
-    return date.strftime('%d-%m-%Y')
+def beautifull_date(date):
+    if date is None:
+        return None
+    else:
+        return date.strftime('%d-%m-%Y')
+
+def computer_date(date: str):
+    if date is None:
+        return None
+    else:
+        return datetime.strptime(date, '%d-%m-%Y')
 
 
 def valid_index(len_list: int):

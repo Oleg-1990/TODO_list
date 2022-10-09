@@ -3,9 +3,11 @@ from Repository import repository as repo
 from TODO_item import todo_item
 from datetime import datetime
 from termcolor import colored
+import json
 import my_function
 
-class todo_service_item:
+
+class TodoServiceItem:
     def __init__(self):
         self.repo = repo.Repository()
         self.item = todo_item.TODO_item
@@ -13,7 +15,7 @@ class todo_service_item:
         self.func = my_function
 
     def add_item(self, description: str, due_date):
-        self.repo.create_item(self.item(description, due_date, colored(self.status.pending, 'yellow'), datetime.now()))
+        self.repo.create_item(self.item(description, due_date, colored(self.status.pending, 'yellow'), None))
 
     def list_item(self):
         return self.repo.find_all_item()
@@ -39,7 +41,18 @@ class todo_service_item:
     def canceled(self, id):
         self.repo.canceled(id)
 
+    def done_list(self):
+        self.repo.show_done_list()
+
+
     def read_file(self):
-        self.repo.read_from_json()
-
-
+        with open('DB-TODO_list.json', 'r', encoding='utf-8') as file:
+            try:
+                lst = json.load(file)
+                for item in lst:
+                    self.repo.create_item_from_json(item["ID"], self.item(item['Description'],
+                                                                      self.func.computer_date(item['Due date']),
+                                                                      item['Status'],
+                                                                     self.func.computer_date(item['Date_of_change'])))
+            except:
+                pass

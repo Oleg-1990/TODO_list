@@ -29,6 +29,8 @@ if __name__ == '__main__':
                 api.remove()
             case 'remove_all':
                 api.remove_all()
+            case 'done_list':
+                api.done_list()
             case 'exit':
                 api.exit()
                 exit = True
