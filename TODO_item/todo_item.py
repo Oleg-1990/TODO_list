@@ -7,5 +7,3 @@ class TODO_item:
         self.due_date = due_date
         self.status = status
         self.date_of_change = date_of_change
-
-
