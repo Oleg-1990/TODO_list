@@ -1,9 +1,6 @@
 from API import api
-from Repository import repository
 
 if __name__ == '__main__':
-
-
 
     api = api.Api()
     exit = False
@@ -17,6 +14,8 @@ if __name__ == '__main__':
                 api.help()
             case 'add':
                 api.add()
+            case 'add_few':
+                api.add_a_few()
             case 'list':
                 api.list()
             case 'completed':
